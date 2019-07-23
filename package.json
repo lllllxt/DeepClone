@@ -1,13 +1,13 @@
 {
-  "name": "clone-deep",
-  "version": "0.0.2",
+  "name": "@lllllxt/deep-clone",
+  "version": "1.0.0",
   "description": "深拷贝, 支持基本数据类型(string, number, boolean, null, undefined, symbol), 以及(Date, RegExp, Array, Object, Map, Set)",
   "main": "dist/clone.js",
   "scripts": {
     "start": "npm run build && npm run browserify && npm run uglifyjs",
     "build": "babel src --out-dir dist --presets env",
-    "browserify": "browserify dist/window.js > clone.js",
-    "uglifyjs": "uglifyjs clone.js -c -m -o clone.min.js"
+    "browserify": "browserify dist/window.js > deep-clone.js",
+    "uglifyjs": "uglifyjs deep-clone.js -c -m -o deep-clone.min.js"
   },
   "repository": {
     "type": "git",

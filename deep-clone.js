@@ -24,17 +24,14 @@ function clone(val) {
     // 2类 Date, RegExp
     var type = Object.prototype.toString.call(val);
     if ([tagDate, tagRegExp].includes(type)) {
-        // 相传 RegExp 需要特殊处理，不知道为什么...
         return new val.constructor(val);
     }
 
     // 3类 引用数据类型
     if (Array.isArray(val)) {
-        var _arr = Array();
-        val.forEach(function (v) {
-            _arr.push(clone(v));
+        return val.map(function (v) {
+            return clone(v);
         });
-        return _arr;
     } else if (typeof val === 'function') {
         return val;
     } else if (type === tagMap) {
@@ -98,7 +95,7 @@ function clone(val) {
         for (var key in val) {
             _obj[key] = clone(val[key]);
         }
-        // 使用Symbols作为属性的项目
+        // 处理使用Symbols作为属性的项目
         var _sybKeys = Object.getOwnPropertySymbols(val);
         if (_sybKeys.length > 0) {
             var _iteratorNormalCompletion3 = true;

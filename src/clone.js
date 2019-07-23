@@ -15,17 +15,12 @@ function clone(val) {
     // 2类 Date, RegExp
     const type = Object.prototype.toString.call(val)
     if ([tagDate, tagRegExp].includes(type)) {
-        // 相传 RegExp 需要特殊处理，不知道为什么...
         return new val.constructor(val)
     }
 
     // 3类 引用数据类型
     if (Array.isArray(val)) {
-        const _arr = Array()
-        val.forEach(v => {
-            _arr.push(clone(v))
-        });
-        return _arr
+        return val.map(v => clone(v))
     } else if (typeof val === 'function') {
         return val
     } else if (type === tagMap) {
@@ -45,7 +40,7 @@ function clone(val) {
         for (const key in val) {
             _obj[key] = clone(val[key])
         }
-        // 使用Symbols作为属性的项目
+        // 处理使用Symbols作为属性的项目
         const _sybKeys = Object.getOwnPropertySymbols(val)
         if (_sybKeys.length > 0) {
             for (const key of _sybKeys) {

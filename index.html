@@ -44,14 +44,24 @@
             /* animation: myAnimate duration timing-function delay iteration-count direction fill-mode; */
 
         }
+
+        p {
+            font-size: 16px;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
-    <h1 title="看控制台">DeepClone</h1>
+    <h1>
+        DeepClone
+        <p>请查看控制台</p>
+    </h1>
+
+
 </body>
 
-<script src="clone.js"></script>
+<script src="deep-clone.min.js"></script>
 <script>
     class Person {
         constructor(name) {
@@ -94,7 +104,8 @@
                 name: 'Ben'
             }
         ],
-        [sbKey]: '123'
+        [sbKey]: '123',
+        man: man
     }
     // const tagMap = '[object Map]'
     // const tagSet = '[object Set]'
@@ -125,12 +136,12 @@
     //         })
     //     }
     // })(a)
-    console.log('before 数据源a对象');
-    console.log('a = ', a);
     const b = clone(a)
-    // Object.assign( Object.create( Object.getPrototypeOf(a.cls)), a.cls)
-    console.log('after 克隆a对象后的b对象');
+    console.log('const a = ', a);
+    console.log('const b = clone(a)');
     console.log('b = ', b);
+    console.log('可以直接在控制台操作a,b的对象');
+
 </script>
 
 </html>
