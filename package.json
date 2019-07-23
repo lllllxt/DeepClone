@@ -1,6 +1,6 @@
 {
   "name": "clone-deep",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "深拷贝, 支持基本数据类型(string, number, boolean, null, undefined, symbol), 以及(Date, RegExp, Array, Object, Map, Set)",
   "main": "dist/clone.js",
   "scripts": {
