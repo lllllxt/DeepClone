@@ -4,10 +4,9 @@
   "description": "深拷贝, 支持基本数据类型(string, number, boolean, null, undefined, symbol), 以及(Date, RegExp, Array, Object, Map, Set)",
   "main": "dist/clone.js",
   "scripts": {
-    "start": "npm run build && npm run browserify && npm run uglifyjs",
-    "build": "babel src --out-dir dist --presets env",
-    "browserify": "browserify dist/window.js > deep-clone.js",
-    "uglifyjs": "uglifyjs deep-clone.js -c -m -o deep-clone.min.js"
+    "start": "npm run build && npm run uglify",
+    "build": "rollup -c build/rollup.config.js -o deep-clone.js",
+    "uglify": "rollup -c build/rollup.config.js -o deep-clone.min.js --uglify"
   },
   "repository": {
     "type": "git",
@@ -24,10 +23,17 @@
     "url": "https://github.com/lllllxt/DeepClone/issues"
   },
   "homepage": "https://github.com/lllllxt/DeepClone#readme",
-  "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "browserify": "^16.2.3",
-    "uglify-js": "^3.4.9"
-  }
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "@babel/preset-env": "^7.8.6",
+    "rollup": "^1.32.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-uglify": "^6.0.4"
+  },
+  "files": [
+    "src/",
+    "clone.js",
+    "clone.min.js"
+  ]
 }

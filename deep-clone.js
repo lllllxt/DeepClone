@@ -1,141 +1,151 @@
-(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = global || self, global.clone = factory());
+}(this, (function () { 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var tagMap = '[object Map]';
-var tagSet = '[object Set]';
-var tagRegExp = '[object RegExp]';
-var tagDate = '[object Date]';
-
-function isObj(input) {
-    var type = typeof input === 'undefined' ? 'undefined' : _typeof(input);
-    return input !== null && (type === 'object' || type === 'function');
-}
-
-function clone(val) {
-    // 1类 基本数据类型  string, number, boolean, null, undefined, symbol
-    if (!isObj(val)) return val;
-
-    // 2类 Date, RegExp
-    var type = Object.prototype.toString.call(val);
-    if ([tagDate, tagRegExp].includes(type)) {
-        return new val.constructor(val);
-    }
-
-    // 3类 引用数据类型
-    if (Array.isArray(val)) {
-        return val.map(function (v) {
-            return clone(v);
-        });
-    } else if (typeof val === 'function') {
-        return val;
-    } else if (type === tagMap) {
-        var _map = new Map();
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-            for (var _iterator = val[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var item = _step.value;
-
-                _map.set(item[0], clone(item[1]));
-            }
-        } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                    _iterator.return();
-                }
-            } finally {
-                if (_didIteratorError) {
-                    throw _iteratorError;
-                }
-            }
-        }
-
-        return _map;
-    } else if (type === tagSet) {
-        var _set = new Set();
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
-
-        try {
-            for (var _iterator2 = val[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                var _item = _step2.value;
-
-                _set.add(clone(_item));
-            }
-        } catch (err) {
-            _didIteratorError2 = true;
-            _iteratorError2 = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                    _iterator2.return();
-                }
-            } finally {
-                if (_didIteratorError2) {
-                    throw _iteratorError2;
-                }
-            }
-        }
-
-        return _set;
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function (obj) {
+        return typeof obj;
+      };
     } else {
-        var _obj = Object.create(Object.getPrototypeOf(val));
-        for (var key in val) {
-            _obj[key] = clone(val[key]);
-        }
-        // 处理使用Symbols作为属性的项目
-        var _sybKeys = Object.getOwnPropertySymbols(val);
-        if (_sybKeys.length > 0) {
-            var _iteratorNormalCompletion3 = true;
-            var _didIteratorError3 = false;
-            var _iteratorError3 = undefined;
-
-            try {
-                for (var _iterator3 = _sybKeys[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                    var _key = _step3.value;
-
-                    _obj[_key] = clone(val[_key]);
-                }
-            } catch (err) {
-                _didIteratorError3 = true;
-                _iteratorError3 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                        _iterator3.return();
-                    }
-                } finally {
-                    if (_didIteratorError3) {
-                        throw _iteratorError3;
-                    }
-                }
-            }
-        }
-        return _obj;
+      _typeof = function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
     }
-}
 
-exports.default = clone;
-},{}],2:[function(require,module,exports){
-'use strict';
+    return _typeof(obj);
+  }
 
-var _clone = require('./clone');
+  var tagMap = '[object Map]';
+  var tagSet = '[object Set]';
+  var tagRegExp = '[object RegExp]';
+  var tagDate = '[object Date]';
 
-var _clone2 = _interopRequireDefault(_clone);
+  function isObj(input) {
+    var type = _typeof(input);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+    return input !== null && (type === 'object' || type === 'function');
+  }
 
-window.clone = _clone2.default;
-},{"./clone":1}]},{},[2]);
+  function clone(val) {
+    // 1类 基本数据类型  string, number, boolean, null, undefined, symbol
+    if (!isObj(val)) return val; // 2类 Date, RegExp
+
+    var type = Object.prototype.toString.call(val);
+
+    if ([tagDate, tagRegExp].includes(type)) {
+      return new val.constructor(val);
+    } // 3类 引用数据类型
+
+
+    if (Array.isArray(val)) {
+      return val.map(function (v) {
+        return clone(v);
+      });
+    } else if (typeof val === 'function') {
+      return val;
+    } else if (type === tagMap) {
+      var _map = new Map();
+
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = val[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var item = _step.value;
+
+          _map.set(item[0], clone(item[1]));
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      return _map;
+    } else if (type === tagSet) {
+      var _set = new Set();
+
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = val[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var _item = _step2.value;
+
+          _set.add(clone(_item));
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+            _iterator2.return();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
+      return _set;
+    } else {
+      var _obj = Object.create(Object.getPrototypeOf(val));
+
+      for (var key in val) {
+        _obj[key] = clone(val[key]);
+      } // 处理使用Symbols作为属性的项目
+
+
+      var _sybKeys = Object.getOwnPropertySymbols(val);
+
+      if (_sybKeys.length > 0) {
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
+
+        try {
+          for (var _iterator3 = _sybKeys[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var _key = _step3.value;
+            _obj[_key] = clone(val[_key]);
+          }
+        } catch (err) {
+          _didIteratorError3 = true;
+          _iteratorError3 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+              _iterator3.return();
+            }
+          } finally {
+            if (_didIteratorError3) {
+              throw _iteratorError3;
+            }
+          }
+        }
+      }
+
+      return _obj;
+    }
+  }
+
+  return clone;
+
+})));

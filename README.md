@@ -25,11 +25,6 @@ clone({a: 1, b: {c: 2}}) // => {a: 1, b: {c: 2}}
 此方法是向window对象中注册一个 ```clone``` 对象
 
 
-
-## Built With
-* [browserify](https://www.npmjs.com/package/browserify)
-* [uglifyjs](https://www.npmjs.com/package/uglify-js)
-
 ## 其他
 欢迎PR或提交issues :smiley:
 
