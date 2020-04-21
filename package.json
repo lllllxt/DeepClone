@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run build && npm run uglify",
     "build": "rollup -c build/rollup.config.js -o deep-clone.js",
-    "uglify": "rollup -c build/rollup.config.js -o deep-clone.min.js --uglify"
+    "uglify": "rollup -c build/rollup.config.js -o deep-clone.min.js --uglify",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "@babel/preset-env": "^7.8.6",
+    "jest": "^25.4.0",
     "rollup": "^1.32.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-uglify": "^6.0.4"
