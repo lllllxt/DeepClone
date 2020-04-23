@@ -1,6 +1,6 @@
 {
   "name": "@lllllxt/deep-clone",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "深拷贝, 支持基本数据类型(string, number, boolean, null, undefined, symbol), 以及(Date, RegExp, Array, Object, Map, Set)",
   "main": "deep-clone.min.js",
   "scripts": {
@@ -35,7 +35,7 @@
   },
   "files": [
     "src/",
-    "clone.js",
-    "clone.min.js"
+    "deep-clone.js",
+    "deep-clone.min.js"
   ]
 }
