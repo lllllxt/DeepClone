@@ -1,13 +1,13 @@
 {
   "name": "@lllllxt/deep-clone",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "深拷贝, 支持基本数据类型(string, number, boolean, null, undefined, symbol), 以及(Date, RegExp, Array, Object, Map, Set)",
-  "main": "dist/clone.js",
+  "main": "deep-clone.min.js",
   "scripts": {
-    "start": "npm run build && npm run uglify",
+    "start": "npm run build && npm run uglify && npm run test",
     "build": "rollup -c build/rollup.config.js -o deep-clone.js",
     "uglify": "rollup -c build/rollup.config.js -o deep-clone.min.js --uglify",
-    "test": "jest"
+    "test": "jest --collectCoverage"
   },
   "repository": {
     "type": "git",
