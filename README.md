@@ -20,7 +20,7 @@ clone({a: 1, b: {c: 2}}) // => {a: 1, b: {c: 2}}
 ```
 
 ### 通过```<script>```标签引用
-[clone.min.js](https://github.com/lllllxt/DeepClone/blob/master/deep-clone.min.js)
+[deep-clone.min.js](https://github.com/lllllxt/DeepClone/blob/master/deep-clone.min.js)
 
 此方法是向window对象中注册一个 ```clone``` 对象
 
